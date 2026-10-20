@@ -3,7 +3,7 @@
 **Student:** Abhishek Singh (2025AE05961)
 **Course:** AIMLCZG523 Machine Learning Operations - Assignment 01
 **Repository:** https://github.com/abhisheksingh-ml/2025AE05961_MLOps_AIMLCZG523-Assignment-01
-**Demo video:** Not uploaded yet
+**Demo video:** https://drive.google.com/file/d/1m59lCgjI2J6erj946fE7vSJM_i4ePiXU/view?usp=drive_link
 **Environment:** BITS Pilani Prayogshala VM (Python 3.11, Docker, Minikube)
 
 ## 1. Objective
