@@ -25,7 +25,10 @@ python -m src.train
 
 
 ## 3. Architecture
-<img width="4032" height="1632" alt="image" src="[https://github.com/user-attachments/assets/5c7ae993-0c78-40e2-91cb-7aa0faca68fc](https://github.com/abhisheksingh-ml/2025AE05961_MLOps_AIMLCZG523-Assignment-01/blob/main/screenshots/architecture.png)" />
+
+![Architecture](screenshots/architecture.png)
+
+**Figure 1: End-to-End MLOps Architecture**
 
 
 Flow: UCI data is downloaded and cleaned, a feature pipeline and three tuned models are trained and tracked in
