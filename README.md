@@ -1,6 +1,6 @@
 # Heart Disease Risk Prediction - End-to-End MLOps
-STUDENT_NAME = f"Abhishek Singh"
-BITS_ID = f"2025AE05961"
+STUDENT_NAME = "Abhishek Singh"
+BITS_ID = "2025AE05961"
 
 Predicts heart-disease presence from 13 clinical values in the UCI
 Cleveland dataset and serves the model through a containerised,
