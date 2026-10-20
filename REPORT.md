@@ -132,13 +132,6 @@ jobs in order: lint, tests, training with a quality gate (test ROC-AUC of 0.80 o
 a smoke test. If one job fails the later jobs are skipped, and logs, reports, MLflow runs and the model are
 saved as artifacts.
 
-*(screenshot 11 not added yet: pytest: all tests pass)*
-
-*(screenshot 12 not added yet: GitHub Actions: all jobs green)*
-
-*(screenshot 13 not added yet: GitHub Actions: saved artifacts)*
-
-*(screenshot 15 not added yet: Pipeline stops when a test fails)*
 
 
 ## 9. Docker container
@@ -146,9 +139,6 @@ The FastAPI service has `POST /predict` (JSON in, prediction and confidence out)
 `GET /metrics`. Inputs are validated, so invalid values return HTTP 422. The image uses python:3.11-slim, runs
 as a non-root user and has a health check. The container reported healthy and answered `/predict`.
 
-*(screenshot 16 not added yet: Docker image build)*
-
-*(screenshot 17 not added yet: Container running and answering /predict)*
 
 
 ## 10. Kubernetes deployment (Minikube)
@@ -157,13 +147,6 @@ limits), a LoadBalancer Service (port 80 to the container port 8000, NodePort 30
 `heart-api.local`. Both pods are Running with 0 restarts. The API answers through the NodePort and the Ingress,
 and through the LoadBalancer EXTERNAL-IP while `minikube tunnel` is running.
 
-*(screenshot 19 not added yet: kubectl get pods, services and ingress)*
-
-*(screenshot 20 not added yet: LoadBalancer service with EXTERNAL-IP)*
-
-*(screenshot 21 not added yet: Prediction through the cluster)*
-
-*(screenshot 22 not added yet: Request logs from the pods)*
 
 
 ## 11. Monitoring and logging
@@ -173,8 +156,6 @@ and through the LoadBalancer EXTERNAL-IP while `minikube tunnel` is running.
 - **Prometheus and Grafana:** Docker Compose starts both. A load test sent 300 requests, every 15th one
   deliberately invalid and rejected with 422. Prometheus showed the target as up, and the Grafana dashboard
   shows request rate, 95th percentile latency, predictions per class and error responses.
-
-*(screenshot 24 not added yet: JSON request logs)*
 
 ![Prometheus target is up](screenshots/25_prometheus_targets.png)
 
