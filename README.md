@@ -9,7 +9,7 @@ monitored API.
 - **Course:** AIMLCZG523 MLOps - Assignment 01
 - **Student:** Abhishek Singh (2025AE05961)
 - **Repository:** https://github.com/abhisheksingh-ml/2025AE05961_MLOps_AIMLCZG523-Assignment-01
-- **Demo video:** Not uploaded yet
+- **Demo video:** https://drive.google.com/file/d/1m59lCgjI2J6erj946fE7vSJM_i4ePiXU/view?usp=drive_link
 
 ![Architecture](docs/architecture.png)
 
