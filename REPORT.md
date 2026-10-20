@@ -25,10 +25,10 @@ python -m src.train
 
 
 ## 3. Architecture
-
+**Figure 1: End-to-End MLOps Architecture**
 ![Architecture](screenshots/architecture.png)
 
-**Figure 1: End-to-End MLOps Architecture**
+
 
 
 Flow: UCI data is downloaded and cleaned, a feature pipeline and three tuned models are trained and tracked in
