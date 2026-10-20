@@ -1,0 +1,14 @@
+# files that are NOT needed inside the image (keeps it small)
+.git
+.github
+mlruns
+notebooks
+tests
+reports
+screenshots
+docs
+data
+logs
+models/mlflow_model
+**/__pycache__
+*.ipynb

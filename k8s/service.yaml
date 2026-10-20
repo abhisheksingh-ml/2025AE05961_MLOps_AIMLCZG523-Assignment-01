@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: heart-api-service
+  labels:
+    app: heart-api
+spec:
+  type: LoadBalancer          # on Minikube the EXTERNAL-IP appears while "minikube tunnel" is running
+  selector:
+    app: heart-api            # send traffic to pods with this label
+  ports:
+    - port: 80                # port of the service
+      targetPort: 8000        # port of the container
+      nodePort: 30080         # fixed port on the Minikube node (a second way in: http://<minikube ip>:30080)

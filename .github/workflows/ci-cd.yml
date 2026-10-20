@@ -1,0 +1,108 @@
+name: CI-CD Pipeline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  PYTHON_VERSION: "3.11"
+
+jobs:
+  lint:
+    name: 1. Lint (flake8)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - run: pip install flake8==7.1.1
+      - run: flake8 src app tests data --count --show-source --statistics
+
+  test:
+    name: 2. Unit tests (pytest)
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+      - run: pip install -r requirements.txt
+      - run: python -m pytest --junitxml=test-results.xml
+      - name: Save test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: test-results.xml
+
+  train:
+    name: 3. Train model (MLflow)
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+      - run: pip install -r requirements.txt
+      - run: python data/download_data.py
+      - run: python -m src.eda
+      - name: Train
+        run: python -m src.train 2>&1 | tee training.log
+      - name: Quality gate - fail if test ROC-AUC is below 0.80
+        run: |
+          python -c "import json,sys; m=json.load(open('reports/metrics.json')); print(m); sys.exit(0 if m['test_roc_auc']>=0.80 else 1)"
+      - name: Save the model
+        uses: actions/upload-artifact@v4
+        with:
+          name: model
+          path: |
+            models/model.joblib
+            models/metadata.json
+      - name: Save reports, plots, MLflow runs and logs
+        uses: actions/upload-artifact@v4
+        with:
+          name: training-reports
+          path: |
+            reports/
+            mlruns/
+            training.log
+
+  docker:
+    name: 4. Docker build and smoke test
+    needs: train
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: model
+          path: models
+      - name: Build the image
+        run: docker build -t heart-disease-api:ci .
+      - name: Start the container
+        run: |
+          docker run -d --name api -p 8000:8000 heart-disease-api:ci
+          for i in $(seq 1 30); do curl -fs localhost:8000/health && break; sleep 2; done
+      - name: Call /predict
+        run: |
+          curl -fs -X POST localhost:8000/predict -H "Content-Type: application/json" -d @scripts/sample_request.json | tee predict_response.json
+          grep -q '"confidence"' predict_response.json
+      - name: Container logs
+        if: always()
+        run: docker logs api | tee container.log
+      - name: Save docker logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: docker-smoke-test
+          path: |
+            predict_response.json
+            container.log

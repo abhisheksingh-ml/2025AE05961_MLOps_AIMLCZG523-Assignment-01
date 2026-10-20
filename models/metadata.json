@@ -1,0 +1,34 @@
+{
+  "model_name": "logreg",
+  "best_params": {
+    "clf__C": 0.5,
+    "clf__class_weight": "balanced"
+  },
+  "cv_accuracy": 0.8511054421768707,
+  "cv_precision": 0.8735643456467255,
+  "cv_recall": 0.8011857707509883,
+  "cv_f1": 0.8319293375907273,
+  "cv_roc_auc": 0.9061754670450324,
+  "test_accuracy": 0.8688524590163934,
+  "test_precision": 0.8125,
+  "test_recall": 0.9285714285714286,
+  "test_f1": 0.8666666666666667,
+  "test_roc_auc": 0.958874458874459,
+  "features": [
+    "age",
+    "trestbps",
+    "chol",
+    "thalach",
+    "oldpeak",
+    "ca",
+    "sex",
+    "fbs",
+    "exang",
+    "cp",
+    "restecg",
+    "slope",
+    "thal"
+  ],
+  "mlflow_run_id": "f72e375fcdf8454a826e0ee13c133e2c",
+  "trained_at_utc": "2026-10-20T05:03:10.213378+00:00"
+}

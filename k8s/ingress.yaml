@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: heart-api-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: heart-api.local             # requests for this host name ...
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: heart-api-service # ... go to this service
+                port:
+                  number: 80
