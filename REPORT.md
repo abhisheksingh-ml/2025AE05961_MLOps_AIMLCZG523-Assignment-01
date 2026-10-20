@@ -25,7 +25,8 @@ python -m src.train
 
 
 ## 3. Architecture
-![Architecture](docs/architecture.png)
+<img width="4032" height="1632" alt="image" src="https://github.com/user-attachments/assets/5c7ae993-0c78-40e2-91cb-7aa0faca68fc" />
+
 
 Flow: UCI data is downloaded and cleaned, a feature pipeline and three tuned models are trained and tracked in
 MLflow, the best pipeline is saved, GitHub Actions checks and builds a Docker image, the image runs on Minikube
