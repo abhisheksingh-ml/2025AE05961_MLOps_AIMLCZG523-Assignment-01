@@ -12,7 +12,6 @@ Cleveland dataset), and run the model as a tested, containerised, monitored serv
 The work follows the full MLOps cycle: data, EDA, features, model tuning, MLflow tracking, packaging,
 unit tests, CI/CD, Docker, Kubernetes deployment and monitoring.
 
-## 2. Setup and installation
 ```bash
 git clone https://github.com/abhisheksingh-ml/2025AE05961_MLOps_AIMLCZG523-Assignment-01.git
 cd 2025AE05961_MLOps_AIMLCZG523-Assignment-01
@@ -22,18 +21,15 @@ pip install -r requirements.txt
 python data/download_data.py
 python -m src.eda
 python -m src.train
-
+```
 
 ## 3. Architecture
-**Figure 1: End-to-End MLOps Architecture**
+
 ![Architecture](screenshots/architecture.png)
 
+**Figure 1: End-to-End MLOps Architecture**
 
-
-
-Flow: UCI data is downloaded and cleaned, a feature pipeline and three tuned models are trained and tracked in
-MLflow, the best pipeline is saved, GitHub Actions checks and builds a Docker image, the image runs on Minikube
-behind a LoadBalancer and Ingress, and Prometheus and Grafana monitor the live API.
+Flow: UCI data is downloaded and cleaned, a feature pipeline and three tuned models are trained and tracked in MLflow, the best pipeline is saved, GitHub Actions checks and builds a Docker image, the image runs on Minikube behind a LoadBalancer and Ingress, and Prometheus and Grafana monitor the live API.
 
 ## 4. Data acquisition and EDA
 
