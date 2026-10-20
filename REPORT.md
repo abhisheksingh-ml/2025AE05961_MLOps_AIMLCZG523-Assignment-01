@@ -22,8 +22,6 @@ pip install -r requirements.txt
 python data/download_data.py
 python -m src.eda
 python -m src.train
-```
-*(screenshot 01 not added yet: Clean installation from requirements.txt)*
 
 
 ## 3. Architecture
