@@ -114,17 +114,8 @@ cross-validated accuracy, precision, recall, f1. The dataset is small (303 patie
 ![Confusion matrix](reports/runs/logreg/logreg_confusion_matrix.png)
 ![Feature importance](reports/runs/logreg/logreg_feature_importance.png)
 
-## 6. Experiment tracking (MLflow)
-Each model is one MLflow run in the experiment `heart-disease-classification`. A run stores the best
-parameters, cross-validation and test metrics, the confusion matrix, ROC curve and feature-importance plots,
-the full grid-search table and the model with its input signature. The run id of the selected model is
-`f72e375fcdf8454a826e0ee13c133e2c`.
+![Uploading image.png…]()
 
-*(screenshot 07 not added yet: MLflow runs)*
-
-*(screenshot 08 not added yet: Comparing runs in MLflow)*
-
-*(screenshot 09 not added yet: Artifacts of one run)*
 
 
 ## 7. Packaging and reproducibility
